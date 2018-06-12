@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NhaHangNhom4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ban">
+    <Key>
+      <PropertyRef Name="maban" />
+    </Key>
+    <Property Name="maban" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ghichu" Type="nvarchar" MaxLength="100" />
+    <Property Name="makhach" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'NhaHangNhom4.dbo.ChiTietHoaDon' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="ChiTietHoaDon">
+          <Property Name="mamon" Type="varchar" MaxLength="10" />
+          <Property Name="mahoadon" Type="varchar" MaxLength="10" />
+          <Property Name="soluong" Type="int" />
+        </EntityType>-->
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="mahoadon" />
+    </Key>
+    <Property Name="mahoadon" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="makhach" Type="varchar" MaxLength="10" />
+    <Property Name="tennv" Type="nvarchar" MaxLength="100" />
+    <Property Name="maban" Type="varchar" MaxLength="10" />
+    <Property Name="thoigian" Type="date" />
+  </EntityType>
+  <EntityType Name="Khach">
+    <Key>
+      <PropertyRef Name="makhach" />
+    </Key>
+    <Property Name="makhach" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="tenkhach" Type="nvarchar" MaxLength="100" />
+    <Property Name="sdt" Type="int" />
+  </EntityType>
+  <EntityType Name="Mon">
+    <Key>
+      <PropertyRef Name="mamon" />
+    </Key>
+    <Property Name="tenmon" Type="nvarchar" MaxLength="100" />
+    <Property Name="mamon" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="mota" Type="nvarchar" MaxLength="1000" />
+    <Property Name="gia" Type="float" />
+    <Property Name="loaimon" Type="nvarchar" MaxLength="100" />
+    <Property Name="anh" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK__Ban__makhach__145C0A3F">
+    <End Role="Khach" Type="Self.Khach" Multiplicity="0..1" />
+    <End Role="Ban" Type="Self.Ban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Khach">
+        <PropertyRef Name="makhach" />
+      </Principal>
+      <Dependent Role="Ban">
+        <PropertyRef Name="makhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <!--Errors Found During Generation:
+error 6004: The table 'NhaHangNhom4.dbo.ChiTietHoaDon' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__ChiTietHo__mahoa__1B0907CE" />-->
+  <!--Errors Found During Generation:
+error 6004: The table 'NhaHangNhom4.dbo.ChiTietHoaDon' is referenced by a relationship, but cannot be found.
+        <Association Name="FK__ChiTietHo__mamon__1A14E395" />-->
+  <Association Name="FK__HoaDon__maban__182C9B23">
+    <End Role="Ban" Type="Self.Ban" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ban">
+        <PropertyRef Name="maban" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="maban" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDon__makhach__173876EA">
+    <End Role="Khach" Type="Self.Khach" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Khach">
+        <PropertyRef Name="makhach" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="makhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NhaHangNhom4ModelStoreContainer">
+    <EntitySet Name="Ban" EntityType="Self.Ban" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Khach" EntityType="Self.Khach" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Mon" EntityType="Self.Mon" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Ban__makhach__145C0A3F" Association="Self.FK__Ban__makhach__145C0A3F">
+      <End Role="Khach" EntitySet="Khach" />
+      <End Role="Ban" EntitySet="Ban" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDon__maban__182C9B23" Association="Self.FK__HoaDon__maban__182C9B23">
+      <End Role="Ban" EntitySet="Ban" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDon__makhach__173876EA" Association="Self.FK__HoaDon__makhach__173876EA">
+      <End Role="Khach" EntitySet="Khach" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

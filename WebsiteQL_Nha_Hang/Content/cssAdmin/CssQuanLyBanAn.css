@@ -1,0 +1,35 @@
+﻿body {
+    font-size:18px;
+}
+div.BanTrong
+{
+    border: 3px solid rgb(35, 198, 55);
+    height:210px;
+}
+div.BanDay
+{
+    border: 3px solid rgb(255, 50, 50);
+    height:210px;
+}
+textarea
+{
+   margin:auto ;
+}
+.form-control
+{
+    width: 85%;
+}
+textarea.form-control {
+    height: 90px;
+    font-size:16px;
+    padding: 5px 5px ;
+}
+.btn-danger
+{
+    padding: 4px 20px;
+    margin: 5px;
+   
+}
+input {
+    width: 85%;
+}

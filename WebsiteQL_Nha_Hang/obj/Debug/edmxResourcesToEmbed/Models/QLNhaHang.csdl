@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QL_NhaHangModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QL_NhaHangEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ban" EntityType="QL_NhaHangModel.Ban" />
+    <EntitySet Name="ChiTiet" EntityType="QL_NhaHangModel.ChiTiet" />
+    <EntitySet Name="HoaDon" EntityType="QL_NhaHangModel.HoaDon" />
+    <EntitySet Name="MonAn" EntityType="QL_NhaHangModel.MonAn" />
+    <EntitySet Name="sysdiagrams" EntityType="QL_NhaHangModel.sysdiagrams" />
+    <AssociationSet Name="FK_Ban_HoaDon" Association="QL_NhaHangModel.FK_Ban_HoaDon">
+      <End Role="HoaDon" EntitySet="HoaDon" />
+      <End Role="Ban" EntitySet="Ban" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTiet_HoaDon" Association="QL_NhaHangModel.FK_ChiTiet_HoaDon">
+      <End Role="HoaDon" EntitySet="HoaDon" />
+      <End Role="ChiTiet" EntitySet="ChiTiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ChiTiet_MonAn" Association="QL_NhaHangModel.FK_ChiTiet_MonAn">
+      <End Role="MonAn" EntitySet="MonAn" />
+      <End Role="ChiTiet" EntitySet="ChiTiet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Ban">
+    <Key>
+      <PropertyRef Name="MaBan" />
+    </Key>
+    <Property Name="MaBan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TinhTangBan" Type="Int32" />
+    <Property Name="GhiChu" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="MaHD" Type="Int32" />
+    <NavigationProperty Name="HoaDon" Relationship="QL_NhaHangModel.FK_Ban_HoaDon" FromRole="Ban" ToRole="HoaDon" />
+  </EntityType>
+  <EntityType Name="ChiTiet">
+    <Key>
+      <PropertyRef Name="MaHD" />
+      <PropertyRef Name="MaMon" />
+    </Key>
+    <Property Name="MaHD" Type="Int32" Nullable="false" />
+    <Property Name="MaMon" Type="Int32" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="ThanhTien" Type="Double" />
+    <NavigationProperty Name="HoaDon" Relationship="QL_NhaHangModel.FK_ChiTiet_HoaDon" FromRole="ChiTiet" ToRole="HoaDon" />
+    <NavigationProperty Name="MonAn" Relationship="QL_NhaHangModel.FK_ChiTiet_MonAn" FromRole="ChiTiet" ToRole="MonAn" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TinhTrang" Type="Int32" />
+    <Property Name="NgayDat" Type="DateTime" Precision="3" />
+    <Property Name="TongTien" Type="Double" />
+    <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Ban" Relationship="QL_NhaHangModel.FK_Ban_HoaDon" FromRole="HoaDon" ToRole="Ban" />
+    <NavigationProperty Name="ChiTiet" Relationship="QL_NhaHangModel.FK_ChiTiet_HoaDon" FromRole="HoaDon" ToRole="ChiTiet" />
+  </EntityType>
+  <EntityType Name="MonAn">
+    <Key>
+      <PropertyRef Name="MaMon" />
+    </Key>
+    <Property Name="MaMon" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenMon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Double" />
+    <Property Name="Loai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ChiTiet" Relationship="QL_NhaHangModel.FK_ChiTiet_MonAn" FromRole="MonAn" ToRole="ChiTiet" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Ban_HoaDon">
+    <End Type="QL_NhaHangModel.HoaDon" Role="HoaDon" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.Ban" Role="Ban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="Ban">
+        <PropertyRef Name="MaHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTiet_HoaDon">
+    <End Type="QL_NhaHangModel.HoaDon" Role="HoaDon" Multiplicity="1" />
+    <End Type="QL_NhaHangModel.ChiTiet" Role="ChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="ChiTiet">
+        <PropertyRef Name="MaHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ChiTiet_MonAn">
+    <End Type="QL_NhaHangModel.MonAn" Role="MonAn" Multiplicity="1" />
+    <End Type="QL_NhaHangModel.ChiTiet" Role="ChiTiet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MonAn">
+        <PropertyRef Name="MaMon" />
+      </Principal>
+      <Dependent Role="ChiTiet">
+        <PropertyRef Name="MaMon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

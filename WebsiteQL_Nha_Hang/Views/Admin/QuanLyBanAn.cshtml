@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "QuanLyBanAn";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+<link href="~/Content/cssAdmin/CssQuanLyBanAn.css" rel="stylesheet" />
+@using WebsiteQL_Nha_Hang.Models;
+@model List<Ban>
+<h3>Đặt Bàn</h3>
+@foreach (var item in Model)
+{
+    if (item.TinhTangBan == 0)
+    {
+        using (Html.BeginForm("DatBan", "Ban", new { @MaBan = item.MaBan }))
+        {
+            <div class="col-md-3 text-center animate-box">
+                <h4>Bàn trống</h4>
+                <div class="BanTrong">
+                    <div> <strong>Mã bàn:</strong> @item.MaBan<br /></div>
+                    <div>
+
+                        <input type="text" name="HoTen" placeholder="Nhập họ tên..">
+
+                    </div>
+                    <div>
+
+                        <input type="Text" name="SDT" placeholder="Nhập SĐT..">
+                        <textarea rows="1" name="GhiChu" class="form-control" placeholder="Ghi chú.."></textarea>
+                    </div>
+                    <div><button class="btn-danger">Đặt bàn</button></div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-md-3 text-center animate-box">
+            <h4>Bàn đầy</h4>
+            <div class="BanDay">
+                <div><strong>Mã bàn:</strong> @item.MaBan<br /></div>
+
+                <div><strong>Tên KH:</strong> @item.HoaDon.TenKH <br /></div>
+                @if (item.GhiChu == null || item.GhiChu.Length <= 50)
+                {
+                    <div><strong>Ghi Chú:</strong> @item.GhiChu</div>
+                }
+                else
+                {
+                    <div><strong>Ghi Chú:</strong> @item.GhiChu.Substring(0,45)...</div>
+                    <div><a class="btn btn-link" href="#" role="button">Xem thêm</a><br /></div>
+                }
+                @using (Html.BeginForm("ThanhToan", "Admin", new { @MaHD = item.MaHD }))
+                {
+                    <div><button class="btn-link">Xem hóa đơn</button></div>
+                }
+            </div>
+        </div>
+    }
+}

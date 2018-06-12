@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Layout/BanLayout.cshtml";
+}
+@using WebsiteQL_Nha_Hang.Models;
+@model List<Ban>
+<h3>Đặt Bàn</h3>
+@ThongBao.HoTen
+@ThongBao.SDT
+@foreach (var item in Model)
+{
+    if (item.TinhTangBan == 0)
+    {
+        using (Html.BeginForm("DatBan", "Ban", new { @MaBan = item.MaBan }))
+        {
+            <div class="col-md-3 text-center animate-box">
+                <h4>Bàn trống</h4>
+                <div class="BanTrong">
+                    <div> <strong>Mã bàn:</strong> @item.MaBan<br /></div>
+                    <div>
+
+                        <input type="text"  name="HoTen" placeholder="Nhập họ tên..">
+                       
+                    </div>
+                    <div>
+                        <input type="Text" name="SDT" placeholder="Nhập SĐT..">
+                        <textarea rows="1" name="GhiChu" class="form-control" placeholder="Ghi chú.."></textarea>
+                    </div>
+                    <div><button  class="btn">Đặt bàn</button></div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-md-3 text-center animate-box">
+            <h4>Bàn đầy</h4>
+            <div class="BanDay">
+                <div><strong>Mã bàn:</strong> @item.MaBan<br /></div>
+
+                <div><strong>Tên KH:</strong> @item.HoaDon.TenKH <br /></div>
+                @if (item.GhiChu == null || item.GhiChu.Length <= 15)
+                {
+                    <div><strong>Ghi Chú:</strong> @item.GhiChu</div>
+                }
+                else
+                {
+                    <div><strong>Ghi Chú:</strong> @item.GhiChu.Substring(0, 12)...</div>
+                    <div><a class="btn btn-link" href="#" role="button">Xem thêm</a><br /></div>
+                }
+                @using (Html.BeginForm("XemHoaDon", "Ban", new { @MaHD = item.MaHD }))
+                {
+                <div><button class="btn-link">Xem hóa đơn</button></div>
+                }
+            </div>
+        </div>
+    }
+}
+@*<script>
+
+    $(document).ready(function () {
+        $("#btn").submit(function (e) {
+            if ($("#HoTen").val() == "") {
+                $("#HoTen").css('box-shadow', '0px 0px 7px red');
+                alert('Bạn chưa nhập họ tên');
+                e.preventDefault();
+            }
+                if ($("#SDT").val() == "") {
+                    $("#SDT").css('box-shadow', '0px 0px 7px red');
+                    alert('Bạn chưa nhập SĐT');
+                    e.preventDefault();
+            }
+        });
+    });
+
+</script>*@

@@ -1,0 +1,57 @@
+﻿@using WebsiteQL_Nha_Hang.Models;
+@model List<HoaDonChiTiet>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Thực đơn</title>
+    <link href="~/Content/css/cssBangHoaDon.css" rel="stylesheet" />
+</head>
+<body>
+    <div> 
+        <table>
+            <tr>
+                <td><strong>Món</strong></td>
+                <td><strong>Ảnh</strong></td>
+                <td><strong>Số lượng</strong></td>
+                <td><strong>Giá</strong></td>
+                <td><strong>Thành tiền</strong></td>
+            </tr>
+          
+            @foreach (var item in Model)
+            {
+               
+                <tr>
+                    <td>@item.TenMon</td>
+                    <td id="Anh"><img src="@Url.Content("~/Image/" + @item.Anh)"/></td>
+                    @using (Html.BeginForm("CapNhatHoaDonChiTiet", "Menu", new { @MaMonAn = item.iMaMon, @strURL = Request.Url.ToString() }))
+                    {
+                    <td><input type="text"  name="txtSoLuong" value="@item.SoLuong" size="1" /><button ><i class="fas fa-redo"></i></button></td>
+                    } <td>@String.Format("{0:0,0}", item.Gia)VNĐ</td>
+                    @using (Html.BeginForm("XoaHoaDonChiTiet", "Menu", new { @MaMonAn = item.iMaMon , @strURL = Request.Url.ToString() }))
+                    { 
+                    <td>@String.Format("{0:0,0}", item.ThanhTien)VNĐ<button class="btnXoa"><i class="fas fa-trash-alt" ></i></button></td>
+                    }
+                </tr>
+           
+           }
+            <tr>
+                <td class="TongBangHoaDon" colspan="2">Tổng:</td>
+
+                <td class="TongBangHoaDon">@TongHoaDon.TongSoLuong</td>
+                <td class="TongBangHoaDon"></td>
+                <td class="TongBangHoaDon">@String.Format("{0:0,0}", @TongHoaDon.TongTien)   VNĐ</td>
+            </tr>
+        </table>
+        @using (Html.BeginForm("GhiNhan", "Menu"))
+        {
+        <button id="GhiNhan">Ghi nhận</button>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿@model WebsiteQL_Nha_Hang.Models.MonAn
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h2>Hiển thị chi tiết</h2>
+
+<div>
+    <h4>Món ăn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaMon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaMon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TenMon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenMon)
+        </dd>
+
+       
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Anh)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content("~/Image/" + @Model.Anh)"/>
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gia)
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0} VNĐ", Model.Gia)
+            @*@Html.DisplayFor(model => model.Gia)*@
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.MoTa)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new {MaMonAn = Model.MaMon}) |
+    @Html.ActionLink("Trở lại", "Index")
+</p>

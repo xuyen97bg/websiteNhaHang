@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NhaHangNhom4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Ban">
+    <Key>
+      <PropertyRef Name="maban" />
+    </Key>
+    <Property Name="maban" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ghichu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="makhach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Khach" Relationship="Self.FK__Ban__makhach__145C0A3F" FromRole="Ban" ToRole="Khach" />
+    <NavigationProperty Name="HoaDon" Relationship="Self.FK__HoaDon__maban__182C9B23" FromRole="Ban" ToRole="HoaDon" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="mahoadon" />
+    </Key>
+    <Property Name="mahoadon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="makhach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="tennv" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="maban" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="thoigian" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Ban" Relationship="Self.FK__HoaDon__maban__182C9B23" FromRole="HoaDon" ToRole="Ban" />
+    <NavigationProperty Name="Khach" Relationship="Self.FK__HoaDon__makhach__173876EA" FromRole="HoaDon" ToRole="Khach" />
+  </EntityType>
+  <EntityType Name="Khach">
+    <Key>
+      <PropertyRef Name="makhach" />
+    </Key>
+    <Property Name="makhach" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="tenkhach" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="sdt" Type="Int32" />
+    <NavigationProperty Name="Ban" Relationship="Self.FK__Ban__makhach__145C0A3F" FromRole="Khach" ToRole="Ban" />
+    <NavigationProperty Name="HoaDon" Relationship="Self.FK__HoaDon__makhach__173876EA" FromRole="Khach" ToRole="HoaDon" />
+  </EntityType>
+  <EntityType Name="Mon">
+    <Key>
+      <PropertyRef Name="mamon" />
+    </Key>
+    <Property Name="tenmon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="mamon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mota" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="gia" Type="Double" />
+    <Property Name="loaimon" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="anh" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK__Ban__makhach__145C0A3F">
+    <End Role="Khach" Type="Self.Khach" Multiplicity="0..1" />
+    <End Role="Ban" Type="Self.Ban" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Khach">
+        <PropertyRef Name="makhach" />
+      </Principal>
+      <Dependent Role="Ban">
+        <PropertyRef Name="makhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDon__maban__182C9B23">
+    <End Role="Ban" Type="Self.Ban" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Ban">
+        <PropertyRef Name="maban" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="maban" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HoaDon__makhach__173876EA">
+    <End Role="Khach" Type="Self.Khach" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Khach">
+        <PropertyRef Name="makhach" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="makhach" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="NhaHangNhom4Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Ban" EntityType="Self.Ban" />
+    <EntitySet Name="HoaDon" EntityType="Self.HoaDon" />
+    <EntitySet Name="Khach" EntityType="Self.Khach" />
+    <EntitySet Name="Mon" EntityType="Self.Mon" />
+    <AssociationSet Name="FK__Ban__makhach__145C0A3F" Association="Self.FK__Ban__makhach__145C0A3F">
+      <End Role="Khach" EntitySet="Khach" />
+      <End Role="Ban" EntitySet="Ban" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDon__maban__182C9B23" Association="Self.FK__HoaDon__maban__182C9B23">
+      <End Role="Ban" EntitySet="Ban" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HoaDon__makhach__173876EA" Association="Self.FK__HoaDon__makhach__173876EA">
+      <End Role="Khach" EntitySet="Khach" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

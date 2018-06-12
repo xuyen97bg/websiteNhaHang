@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NhaHangNhom4ModelStoreContainer" CdmEntityContainer="NhaHangNhom4Entities">
+    <EntitySetMapping Name="Ban">
+      <EntityTypeMapping TypeName="NhaHangNhom4Model.Ban">
+        <MappingFragment StoreEntitySet="Ban">
+          <ScalarProperty Name="maban" ColumnName="maban" />
+          <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+          <ScalarProperty Name="makhach" ColumnName="makhach" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoaDon">
+      <EntityTypeMapping TypeName="NhaHangNhom4Model.HoaDon">
+        <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="mahoadon" ColumnName="mahoadon" />
+          <ScalarProperty Name="makhach" ColumnName="makhach" />
+          <ScalarProperty Name="tennv" ColumnName="tennv" />
+          <ScalarProperty Name="maban" ColumnName="maban" />
+          <ScalarProperty Name="thoigian" ColumnName="thoigian" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Khach">
+      <EntityTypeMapping TypeName="NhaHangNhom4Model.Khach">
+        <MappingFragment StoreEntitySet="Khach">
+          <ScalarProperty Name="makhach" ColumnName="makhach" />
+          <ScalarProperty Name="tenkhach" ColumnName="tenkhach" />
+          <ScalarProperty Name="sdt" ColumnName="sdt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mon">
+      <EntityTypeMapping TypeName="NhaHangNhom4Model.Mon">
+        <MappingFragment StoreEntitySet="Mon">
+          <ScalarProperty Name="tenmon" ColumnName="tenmon" />
+          <ScalarProperty Name="mamon" ColumnName="mamon" />
+          <ScalarProperty Name="mota" ColumnName="mota" />
+          <ScalarProperty Name="gia" ColumnName="gia" />
+          <ScalarProperty Name="loaimon" ColumnName="loaimon" />
+          <ScalarProperty Name="anh" ColumnName="anh" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

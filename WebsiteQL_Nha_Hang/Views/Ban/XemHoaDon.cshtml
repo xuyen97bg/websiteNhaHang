@@ -1,0 +1,43 @@
+﻿@using WebsiteQL_Nha_Hang.Models;
+@model List<ChiTiet> 
+
+@{
+    ViewBag.Title = "XemHoaDon";
+    Layout = "~/Views/Layout/BanLayout.cshtml";
+}
+<link href="~/Content/CssBan/CssXemHoaDon.css" rel="stylesheet" />
+<h2>Hóa Đơn</h2>
+<div>
+    <table>
+        <tr>
+            <td><strong>Món</strong></td>
+            <td><strong>Ảnh</strong></td>
+            <td><strong>Số lượng</strong></td>
+            <td><strong>Giá</strong></td>
+            <td><strong>Thành tiền</strong></td>
+        </tr>
+        
+        @foreach (var item in Model)
+        {
+            TongHoaDon.TongTien = Double.Parse(item.HoaDon.TongTien.ToString());
+            TongHoaDon.TongSoLuong += int.Parse(item.SoLuong.ToString()); ;
+            <tr>
+                <td>@item.MonAn.TenMon</td>
+                <td id="Anh"><img class="BangMon" src="@Url.Content("~/Image/" + item.MonAn.Anh)" /></td>
+                <td>@item.SoLuong</td>
+                <td>@String.Format("{0:0,0}", item.MonAn.Gia)VNĐ</td>
+                <td>@String.Format("{0:0,0}", item.ThanhTien)VNĐ</td>
+            </tr>
+        }
+        <tr>
+            <td class="TongBangHoaDon" colspan="2">Tổng:</td>
+
+            <td class="TongBangHoaDon">@TongHoaDon.TongSoLuong</td>
+            <td class="TongBangHoaDon"></td>
+            <td class="TongBangHoaDon">@String.Format("{0:0,0}", @TongHoaDon.TongTien)   VNĐ</td>
+        </tr>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Trở lại", "Index")
+</p>
