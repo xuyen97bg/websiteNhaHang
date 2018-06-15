@@ -13,14 +13,24 @@
         font-weight: 300;
         height: 100px;
     }
+    a.chitiet{
+        margin:0;
+        font-size:10px;
+    }
 </style>
+@* Bảng Hóa Đơn *@
+<h3>Hóa đơn</h3>
+@Html.Action("HoaDonChiTiet", "Menu")
+@* Danh Sách Món Ăn *@
+<h3>Thực đơn</h3>
 @foreach (var item in Model)
 {
     //if{ item.TinhTrangBan =00 }
-
+  
 
     <div class="col-md-3 text-center animate-box">
-        <a class="work" href="#">
+      
+        <a class="work" href="http://localhost:57502/Menu/XemChiTiet?MaMon= @item.MaMon">
             <div class="work-grid" style="background-image:url(@Url.Content("~/Image/" + item.Anh)); ">
 
                 <div class="inner">
@@ -39,12 +49,14 @@
                     if (@item.TenMon.Length >= 21)
                     {
                         <h3 style="margin-bottom:5px;">@item.TenMon</h3>
+                        @*@Html.ActionLink("Xem chi tiết", "XemChiTiet", new { @MaMon = item.MaMon, @class = "chitiet" })<br />*@
                             <strong style="color:red;">@String.Format("{0:0,0} VNĐ", @item.Gia)</strong>
 
                     }
                     else
                     {
                         <h3 style="margin-bottom:25px;">@item.TenMon</h3>
+                        @*@Html.ActionLink("Xem chi tiết", "XemChiTiet", new { @MaMon = item.MaMon, @class = "chitiet" })<br />*@
                             <strong style="color:red;">@String.Format("{0:0,0} VNĐ", @item.Gia)</strong>
 
                     }

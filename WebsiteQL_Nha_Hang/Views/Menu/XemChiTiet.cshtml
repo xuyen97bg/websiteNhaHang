@@ -1,0 +1,63 @@
+﻿@model WebsiteQL_Nha_Hang.Models.MonAn
+
+@{
+    ViewBag.Title = "XemChiTiet";
+    Layout = "~/Views/Layout/Layout.cshtml";
+}
+<style>
+    img#anh
+    {
+        width:50%;
+        height:300px;
+    }
+</style>
+<h3>Thông tin món ăn</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Anh)
+        </dt>
+
+        <dd>
+            <img id="anh" src="@Url.Content("~/Image/" + @Model.Anh)" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TenMon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenMon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiMon.TenLoai)
+        </dd>
+
+       
+        <dt>
+            @Html.DisplayNameFor(model => model.Gia)
+        </dt>
+
+        <dd>
+            @String.Format("{0:0,0} VNĐ", Model.Gia)
+            @*@Html.DisplayFor(model => model.Gia)*@
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </dt>
+
+        <dd>
+            @Html.Raw(Model.MoTa)
+        </dd>
+    </dl>
+</div>
+<p>
+  <button class="btn-default">@Html.ActionLink("Trở lại", "Index")</button>
+    
+</p>

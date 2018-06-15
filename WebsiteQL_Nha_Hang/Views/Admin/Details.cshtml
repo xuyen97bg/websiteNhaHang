@@ -8,7 +8,7 @@
 <h2>Hiển thị chi tiết</h2>
 
 <div>
-    <h4>Món ăn</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -36,7 +36,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Loai)
+            @Html.DisplayFor(model => model.LoaiMon.TenLoai)
         </dd>
 
         <dt>
@@ -64,6 +64,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Chỉnh sửa", "Edit", new {MaMonAn = Model.MaMon}) |
-    @Html.ActionLink("Trở lại", "Index")
+    @Html.ActionLink("Chỉnh sửa", "Edit", new {MaMonAn = Model.MaMon},new { @class = "btn btn-defaut"}) |
+    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn  btn-danger" })
 </p>

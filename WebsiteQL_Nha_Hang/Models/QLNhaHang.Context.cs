@@ -28,6 +28,7 @@ namespace WebsiteQL_Nha_Hang.Models
         public virtual DbSet<Ban> Ban { get; set; }
         public virtual DbSet<ChiTiet> ChiTiet { get; set; }
         public virtual DbSet<HoaDon> HoaDon { get; set; }
+        public virtual DbSet<LoaiMon> LoaiMon { get; set; }
         public virtual DbSet<MonAn> MonAn { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }

@@ -29,5 +29,6 @@ namespace WebsiteQL_Nha_Hang.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTiet> ChiTiet { get; set; }
+        public virtual LoaiMon LoaiMon { get; set; }
     }
 }

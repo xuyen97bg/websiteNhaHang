@@ -181,5 +181,40 @@ namespace WebsiteQL_Nha_Hang.Controllers
             return RedirectToAction("Index", "Ban");
         }
 
+        public ActionResult Che()
+        {
+            List<MonAn> List = db.MonAn.Where(n => n.LoaiMon.MaLoaiMon== "3").ToList();
+            return View(List);
+        }
+        public ActionResult SuaChua()
+        {
+            List<MonAn> List = db.MonAn.Where(n => n.LoaiMon.MaLoaiMon == "4").ToList();
+            return View(List);
+        }
+        public ActionResult Banh()
+        {
+            List<MonAn> List = db.MonAn.Where(n => n.LoaiMon.MaLoaiMon == "1").ToList();
+            return View(List);
+        }
+        public ActionResult ChuaCheBien()
+        {
+            List<MonAn> List = db.MonAn.Where(n => n.LoaiMon.MaLoaiMon == "5").ToList();
+            return View(List);
+        }
+        public ActionResult Nem()
+        {
+            List<MonAn> List = db.MonAn.Where(n => n.LoaiMon.MaLoaiMon == "2").ToList();
+            return View(List);
+        }
+        public ActionResult XemChiTiet(int MaMon)
+        {
+            MonAn mon = db.MonAn.Single(n => n.MaMon == MaMon);
+            if(mon==null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(mon);
+        }
     }
 }

@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "GiaoDien";
+    Layout = "~/Views/Layout/BanLayout.cshtml";
+}
+
+@using WebsiteQL_Nha_Hang.Models;
+@model List<MonAn>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Content/css/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet" />
+<script src="~/nivo-slider/jquery.nivo.slider.js"></script>
+<script src="~/nivo-slider/jquery.nivo.slider.pack.js"></script>
+<link href="~/nivo-slider/nivo-slider.css" rel="stylesheet" />
+<style>
+    #ThongTin {
+        font-size: 18pt;
+        font-weight: 300;
+        height: 100px;
+    }
+
+    a.chitiet {
+        margin: 0;
+        font-size: 10px;
+    }
+    pre {
+        color: #00FF00;
+        font-size: 20px;
+        font-family: times new roman;
+        padding: 5px;
+        overflow: hidden;
+        }
+</style>
+@* Chạy chữ *@
+<div>
+<marquee width="100%" hspace="30"><pre> Chào mừng bạn đến với cửa hàng của chúng tôi !                 Chào mừng bạn đến với cửa hàng của chúng tôi !</pre></marquee>
+   
+</div>
+<div style="clear:both;"></div>
+<div id="top_menu">
+<div class="col-md-6 text-center animate-box">
+    <div id="slider" class="nivoSlider">
+        <img src="~/Image/1.jpg" />
+        <img src="~/Image/Caramen-nep-cam.jpg" />
+        <img src="~/Image/18.jpg" />
+        <img src="~/Image/Caramen1.jpg" />
+    </div>
+</div>
+    <a href="http://localhost:57502/Ban/Index"
+<div class="col-md-6 text-center animate-box">
+    <div id="slider1" class="nivoSlider">
+        <img src="~/Image/MuiTen.png" />
+        <img src="~/Image/MuiTen1.png" />
+    </div>
+    <div><h3>Click để đặt bàn ngay !!</h3></div>
+</div>
+    </a>
+</div>
+<div style="clear:both;"></div><hr />
+<h3><strong>Món ăn tiêu biểu</strong></h3>
+@foreach (var item in Model)
+{
+    //if{ item.TinhTrangBan =00 }
+
+
+    <div class="col-md-3 text-center animate-box">
+
+        <a class="work" href="http://localhost:57502/Menu/XemChiTiet?MaMon= @item.MaMon">
+            <div class="work-grid" style="background-image:url(@Url.Content("~/Image/" + item.Anh)); ">
+
+                <div class="inner">
+                    <div class="desc">
+                        <h5>Click</h5>
+                        <span class="cat">Xem chi tiết</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <div id="ThongTin">
+            @{
+
+                if (@item.TenMon.Length >= 21)
+                {
+                    <h3 style="margin-bottom:5px;">@item.TenMon</h3>
+                        @*@Html.ActionLink("Xem chi tiết", "XemChiTiet", new { @MaMon = item.MaMon, @class = "chitiet" })<br />*@
+                        <strong style="color:red;">@String.Format("{0:0,0} VNĐ", @item.Gia)</strong>
+
+                }
+                else
+                {
+                    <h3 style="margin-bottom:25px;">@item.TenMon</h3>
+                        @*@Html.ActionLink("Xem chi tiết", "XemChiTiet", new { @MaMon = item.MaMon, @class = "chitiet" })<br />*@
+                        <strong style="color:red;">@String.Format("{0:0,0} VNĐ", @item.Gia)</strong>
+                }
+            }
+        </div>
+    </div>
+ }
+<script type="text/javascript">
+        $(window).load(function () {
+            $('#slider').nivoSlider({
+                controlNav: false,
+                nextText: '',
+                prevText: ''
+            });
+        });
+        $(window).load(function () {
+            $('#slider1').nivoSlider({
+                controlNav: false,
+                nextText: '',
+                prevText: ''
+            });
+        });
+</script>

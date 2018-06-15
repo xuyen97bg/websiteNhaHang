@@ -31,6 +31,13 @@
     <Property Name="TongTien" Type="float" />
     <Property Name="SDT" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="LoaiMon">
+    <Key>
+      <PropertyRef Name="MaLoaiMon" />
+    </Key>
+    <Property Name="MaLoaiMon" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TenLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="MonAn">
     <Key>
       <PropertyRef Name="MaMon" />
@@ -88,10 +95,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_MonAn_LoaiMon">
+    <End Role="LoaiMon" Type="Self.LoaiMon" Multiplicity="0..1" />
+    <End Role="MonAn" Type="Self.MonAn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiMon">
+        <PropertyRef Name="MaLoaiMon" />
+      </Principal>
+      <Dependent Role="MonAn">
+        <PropertyRef Name="Loai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="QL_NhaHangModelStoreContainer">
     <EntitySet Name="Ban" EntityType="Self.Ban" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ChiTiet" EntityType="Self.ChiTiet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiMon" EntityType="Self.LoaiMon" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MonAn" EntityType="Self.MonAn" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Ban_HoaDon" Association="Self.FK_Ban_HoaDon">
@@ -105,6 +125,10 @@
     <AssociationSet Name="FK_ChiTiet_MonAn" Association="Self.FK_ChiTiet_MonAn">
       <End Role="MonAn" EntitySet="MonAn" />
       <End Role="ChiTiet" EntitySet="ChiTiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MonAn_LoaiMon" Association="Self.FK_MonAn_LoaiMon">
+      <End Role="LoaiMon" EntitySet="LoaiMon" />
+      <End Role="MonAn" EntitySet="MonAn" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

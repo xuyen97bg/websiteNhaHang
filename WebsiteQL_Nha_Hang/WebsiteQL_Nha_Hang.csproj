@@ -216,6 +216,9 @@
     </Compile>
     <Compile Include="Models\HoaDonChiTiet.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LoaiMon.cs">
+      <DependentUpon>QLNhaHang.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MonAn.cs">
       <DependentUpon>QLNhaHang.tt</DependentUpon>
@@ -804,6 +807,34 @@
     <Content Include="NiceAdmin\js\sparkline-chart.js" />
     <Content Include="NiceAdmin\js\sparklines.js" />
     <Content Include="NiceAdmin\js\xcharts.min.js" />
+    <Content Include="nivo-slider\demo\images\dev7logo.png" />
+    <Content Include="nivo-slider\demo\images\nemo.jpg" />
+    <Content Include="nivo-slider\demo\images\toystory.jpg" />
+    <Content Include="nivo-slider\demo\images\up.jpg" />
+    <Content Include="nivo-slider\demo\images\walle.jpg" />
+    <Content Include="nivo-slider\demo\scripts\jquery-1.7.1.min.js" />
+    <Content Include="nivo-slider\demo\style.css" />
+    <Content Include="nivo-slider\index.html" />
+    <Content Include="nivo-slider\jquery.nivo.slider.js" />
+    <Content Include="nivo-slider\jquery.nivo.slider.pack.js" />
+    <Content Include="nivo-slider\license.txt" />
+    <Content Include="nivo-slider\nivo-slider.css" />
+    <Content Include="nivo-slider\themes\bar\arrows.png" />
+    <Content Include="nivo-slider\themes\bar\bar.css" />
+    <Content Include="nivo-slider\themes\bar\bullets.png" />
+    <Content Include="nivo-slider\themes\bar\loading.gif" />
+    <Content Include="nivo-slider\themes\dark\arrows.png" />
+    <Content Include="nivo-slider\themes\dark\bullets.png" />
+    <Content Include="nivo-slider\themes\dark\dark.css" />
+    <Content Include="nivo-slider\themes\dark\loading.gif" />
+    <Content Include="nivo-slider\themes\default\arrows.png" />
+    <Content Include="nivo-slider\themes\default\bullets.png" />
+    <Content Include="nivo-slider\themes\default\default.css" />
+    <Content Include="nivo-slider\themes\default\loading.gif" />
+    <Content Include="nivo-slider\themes\light\arrows.png" />
+    <Content Include="nivo-slider\themes\light\bullets.png" />
+    <Content Include="nivo-slider\themes\light\light.css" />
+    <Content Include="nivo-slider\themes\light\loading.gif" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -938,6 +969,12 @@
     <Content Include="NiceAdmin\assets\morris.js-0.4.3\spec\lib\pad_spec.coffee" />
     <Content Include="NiceAdmin\assets\morris.js-0.4.3\spec\lib\parse_time_spec.coffee" />
     <Content Include="NiceAdmin\assets\morris.js-0.4.3\spec\support\placeholder.coffee" />
+    <Content Include="nivo-slider\.DS_Store" />
+    <Content Include="nivo-slider\demo\.DS_Store" />
+    <Content Include="nivo-slider\demo\images\.DS_Store" />
+    <Content Include="nivo-slider\README" />
+    <Content Include="nivo-slider\themes\.DS_Store" />
+    <Content Include="nivo-slider\themes\dark\.DS_Store" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -1066,6 +1103,21 @@
     <Content Include="Views\Ban\XemHoaDon.cshtml" />
     <Content Include="Views\Admin\QuanLyBanAn.cshtml" />
     <Content Include="Views\Admin\ThanhToan.cshtml" />
+    <Content Include="Views\Ban\Login.cshtml" />
+    <Content Include="Views\Menu\Che.cshtml" />
+    <Content Include="Views\Menu\SuaChua.cshtml" />
+    <Content Include="Views\Menu\Banh.cshtml" />
+    <Content Include="Views\Menu\ChuaCheBien.cshtml" />
+    <Content Include="Views\Menu\Nem.cshtml" />
+    <Content Include="Views\Menu\XemChiTiet.cshtml" />
+    <Content Include="Views\Admin\XemChiTietHoaDon.cshtml" />
+    <Content Include="Views\Admin\QuanLiHoaDon.cshtml" />
+    <Content Include="Views\Admin\Che.cshtml" />
+    <Content Include="Views\Admin\SuaChua.cshtml" />
+    <Content Include="Views\Admin\Banh.cshtml" />
+    <Content Include="Views\Admin\MonSong.cshtml" />
+    <Content Include="Views\Admin\Nem.cshtml" />
+    <Content Include="Views\Ban\GiaoDien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

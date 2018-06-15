@@ -16,7 +16,7 @@ namespace WebsiteQL_Nha_Hang
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Menu", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Ban", action = "GiaoDien", id = UrlParameter.Optional }
             );
         }
     }

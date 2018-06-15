@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "SuaChua";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+@model IEnumerable<WebsiteQL_Nha_Hang.Models.MonAn>
+
+<h2>Quản lý món ăn</h2>
+
+<p>
+    @Html.ActionLink("Thêm món mới", "Create", null, new { @class = "btn btn-primary btn-large" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaMon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TenMon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MoTa)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Anh)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaMon)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenMon)
+            </td>
+            <td>
+                @Html.Raw(item.MoTa)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.Gia)
+                @*@Html.DisplayFor(modelItem => item.Gia)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoaiMon.TenLoai)
+            </td>
+            <td>
+                <img src="@Url.Content("~/Image/" + @item.Anh)" />
+            </td>
+            <td>
+
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { MaMonAn = item.MaMon }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Hiển thị", "Details", new { MaMonAn = item.MaMon }, new { @class = "btn btn-default" })
+                @Html.ActionLink("Xóa món", "Delete", new { MaMonAn = item.MaMon }, new { @class = "btn btn-default" })
+
+            </td>
+        </tr>
+    }
+
+</table>

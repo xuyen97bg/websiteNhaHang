@@ -25,6 +25,7 @@
     <link href="~/Content/css/web-fonts-with-css/css/fontawesome-all.min.css" rel="stylesheet" />
     @* Css riêng *@
     <link href="~/Content/css/web-fonts-with-css/CssLayout.css" rel="stylesheet" />
+   
 </head>
 <body>
 
@@ -33,29 +34,23 @@
         <nav class="fh5co-nav" role="navigation">
             <div class="container">
                 <div class="fh5co-top-logo">
-                    <div id="fh5co-logo"><a href="index.html">Trang chủ</a></div>
+                    <div id="fh5co-logo"><a href="http://localhost:57502">Trang chủ</a></div>
                 </div>
                 <div class="fh5co-top-menu menu-1 text-center">
                     <ul>
-                        <li><a href="work.html">Work</a></li>
-                        <li><a href="about.html">Profile</a></li>
-                        <li class="has-dropdown">
-                            <a href="#">Dropdown</a>
-                            <ul class="dropdown">
-                                <li><a href="#">Web Design</a></li>
-                                <li><a href="#">eCommerce</a></li>
-                                <li><a href="#">Branding</a></li>
-                                <li><a href="#">API</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="http://localhost:57502/Menu" >Tất cả</a></li>
+                        <li><a href="http://localhost:57502/Menu/Che"> Món chè</a></li>
+                        <li><a href="http://localhost:57502/Menu/SuaChua" >Sữa chua kem</a></li>
+                        <li><a href="http://localhost:57502/Menu/Banh" >Bánh</a></li>
+                        <li><a href="http://localhost:57502/Menu/Nem">Nem</a></li>
+                        <li><a href="http://localhost:57502/Menu/ChuaCheBien" > Chưa chế biên</a></li>
                     </ul>
                 </div>
                 <div class="fh5co-top-social menu-1 text-right">
                     <ul class="fh5co-social">
                         <li><a href="#"><i class="icon-twitter"></i></a></li>
                         <li><a href="#"><i class="icon-dribbble"></i></a></li>
-                        <li><a href="#"><i class="icon-github"></i></a></li>
+                        <li><a href="#"><i class="icon-github"></i></a></li>    
                     </ul>
                 </div>
             </div>
@@ -65,11 +60,7 @@
             <div class="container">
 
                 <div class="row">
-                    @* Bảng Hóa Đơn *@
-                    <h3>Hóa đơn</h3>
-                    @Html.Action("HoaDonChiTiet", "Menu")
-                    @* Danh Sách Món Ăn *@
-                    <h3>Thực đơn</h3>
+                   
                     @RenderBody()
                     @*@Html.Action("Menu", "Menu")*@
                 </div>

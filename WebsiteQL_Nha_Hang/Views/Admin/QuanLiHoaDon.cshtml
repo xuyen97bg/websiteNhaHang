@@ -1,0 +1,78 @@
+﻿
+@model IEnumerable<WebsiteQL_Nha_Hang.Models.HoaDon>
+
+@{
+    ViewBag.Title = "QuanLiHoaDon";
+    Layout = "~/Views/Layout/AdminLayout.cshtml";
+}
+
+<h2>Quản lí hóa đơn</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Số thứ tự
+        </th>
+        <th>
+            Tên khách hàng
+        </th>
+        
+        
+        <th>
+           Ngày đặt
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+           Tổng tiền
+        </th>
+       
+        <th>
+            Tình trạng
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaHD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TenKH)
+            </td>
+
+
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayDat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SDT)
+            </td>
+            <td>
+                @String.Format("{0:0,0}", item.TongTien) đ
+            </td>
+            
+
+            <td>
+                @if (item.TinhTrang == 1)
+                {
+                    <strong>Đã thu</strong>
+                }
+                else
+                {
+                    <strong> Chưa thu </strong>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("xem chi tiết", "XemChiTietHoaDon", new { @MaHD = item.MaHD })
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+    }
+
+</table>

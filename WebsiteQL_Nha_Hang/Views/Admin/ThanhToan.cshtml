@@ -1,11 +1,11 @@
-﻿@using WebsiteQL_Nha_Hang.Models;
-@model List<ChiTiet>
+﻿
 
 @{
     ViewBag.Title = "ThanhToan";
     Layout = "~/Views/Layout/AdminLayout.cshtml";
 }
-
+@using WebsiteQL_Nha_Hang.Models;
+@model List<ChiTiet>
 <link href="~/Content/CssBan/CssXemHoaDon.css" rel="stylesheet" />
 <h2>Hóa Đơn</h2>
 <div>
@@ -43,6 +43,7 @@
 {
 <button class="btn-danger" id="ThanhToan">Thanh Toán</button>
 }
+<hr />
 <p>
-    @Html.ActionLink("Trở lại", "QuanLyBanAn")
+    @Html.ActionLink("Trở lại", "QuanLyBanAn", null, new { @class = "btn  btn-default" })
 </p>

@@ -49,15 +49,37 @@ namespace WebsiteQL_Nha_Hang.Controllers
             List<ChiTiet> chitiet = db.ChiTiet.Where(n => n.MaHD == MaHD).ToList();
             return View(chitiet);
         }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            //Nếu đã đăng nhập rồi thì cho vào trang quản trị
+            if (Session["username"] != null && Session["password"] != null)
+            {
+                return RedirectToAction("QuanLyBanAn", "Admin");
+            }
+
+            return View();
+        }
+        [HttpPost]
         public ActionResult Login(FormCollection f)
         {
-            ViewBag.Baoloi = "";
-            if (f["username"].ToString() == "xuyen" && f["password"].ToString() == "123456")
+            
+            //Kiểm tra đăng nhập
+            if (f["txtUsername"].ToString() == "Admin" && f.Get("txtPassword").ToString() == "123456")
             {
-                return RedirectToAction("Admin", "QuanLyBanAn");
+                Session["username"] = "Admin";
+                Session["password"] = "123456";
+                return RedirectToAction("QuanLyBanAn", "Admin");
             }
-            ViewBag.Baoloi = "Sai tài khoản hoặc mật khẩu !!";
-            return RedirectToAction("Index", "Ban");
+            ViewBag.Login = "Sai tài khoản hoặc mật khẩu !";
+            return View();
+        }
+
+        public ActionResult GiaoDien()
+        {
+            List<MonAn> List = db.MonAn.Where(n => n.LoaiMon.MaLoaiMon == "2").ToList();
+            return View(List);
         }
     }
 }

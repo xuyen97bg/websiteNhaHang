@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Layout/BanLayout.cshtml";
+}
+<head>
+    <style>
+        #form {
+            
+            margin: auto;
+            width: 30%;
+        }
+
+        img.avatar {
+            margin-left:100px;  
+            width: 40%;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<br />
+<strong> @ViewBag.Login</strong>
+<div id="form">
+    <img src="~/Image/login.png" class="avatar"/>
+    @using (Html.BeginForm("Login", "Ban"))
+    {
+        <strong>Tài khoản</strong>
+        <input type="text" class="input-lg" name="txtUsername" />
+        <strong>Mật  khẩu</strong>
+        <input type="password" class="input-lg" name="txtPassword" />
+        <br />
+        <br />
+        <button class="btn-block">Đăng nhập</button>
+    }
+    <br />
+    @Html.ActionLink("Trở lại", "Index", null, new { @class = "btn  btn-danger" })
+
+</div>

@@ -34,6 +34,14 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LoaiMon">
+      <EntityTypeMapping TypeName="QL_NhaHangModel.LoaiMon">
+        <MappingFragment StoreEntitySet="LoaiMon">
+          <ScalarProperty Name="TenLoai" ColumnName="TenLoai" />
+          <ScalarProperty Name="MaLoaiMon" ColumnName="MaLoaiMon" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="MonAn">
       <EntityTypeMapping TypeName="QL_NhaHangModel.MonAn">
         <MappingFragment StoreEntitySet="MonAn">

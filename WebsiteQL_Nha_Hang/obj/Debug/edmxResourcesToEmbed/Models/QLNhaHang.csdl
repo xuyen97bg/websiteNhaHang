@@ -4,6 +4,7 @@
     <EntitySet Name="Ban" EntityType="QL_NhaHangModel.Ban" />
     <EntitySet Name="ChiTiet" EntityType="QL_NhaHangModel.ChiTiet" />
     <EntitySet Name="HoaDon" EntityType="QL_NhaHangModel.HoaDon" />
+    <EntitySet Name="LoaiMon" EntityType="QL_NhaHangModel.LoaiMon" />
     <EntitySet Name="MonAn" EntityType="QL_NhaHangModel.MonAn" />
     <EntitySet Name="sysdiagrams" EntityType="QL_NhaHangModel.sysdiagrams" />
     <AssociationSet Name="FK_Ban_HoaDon" Association="QL_NhaHangModel.FK_Ban_HoaDon">
@@ -17,6 +18,10 @@
     <AssociationSet Name="FK_ChiTiet_MonAn" Association="QL_NhaHangModel.FK_ChiTiet_MonAn">
       <End Role="MonAn" EntitySet="MonAn" />
       <End Role="ChiTiet" EntitySet="ChiTiet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MonAn_LoaiMon" Association="QL_NhaHangModel.FK_MonAn_LoaiMon">
+      <End Role="LoaiMon" EntitySet="LoaiMon" />
+      <End Role="MonAn" EntitySet="MonAn" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Ban">
@@ -55,6 +60,14 @@
     <NavigationProperty Name="Ban" Relationship="QL_NhaHangModel.FK_Ban_HoaDon" FromRole="HoaDon" ToRole="Ban" />
     <NavigationProperty Name="ChiTiet" Relationship="QL_NhaHangModel.FK_ChiTiet_HoaDon" FromRole="HoaDon" ToRole="ChiTiet" />
   </EntityType>
+  <EntityType Name="LoaiMon">
+    <Key>
+      <PropertyRef Name="MaLoaiMon" />
+    </Key>
+    <Property Name="MaLoaiMon" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="TenLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="MonAn" Relationship="QL_NhaHangModel.FK_MonAn_LoaiMon" FromRole="LoaiMon" ToRole="MonAn" />
+  </EntityType>
   <EntityType Name="MonAn">
     <Key>
       <PropertyRef Name="MaMon" />
@@ -66,6 +79,7 @@
     <Property Name="Loai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="Anh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="ChiTiet" Relationship="QL_NhaHangModel.FK_ChiTiet_MonAn" FromRole="MonAn" ToRole="ChiTiet" />
+    <NavigationProperty Name="LoaiMon" Relationship="QL_NhaHangModel.FK_MonAn_LoaiMon" FromRole="MonAn" ToRole="LoaiMon" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -110,6 +124,18 @@
       </Principal>
       <Dependent Role="ChiTiet">
         <PropertyRef Name="MaMon" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MonAn_LoaiMon">
+    <End Type="QL_NhaHangModel.LoaiMon" Role="LoaiMon" Multiplicity="0..1" />
+    <End Type="QL_NhaHangModel.MonAn" Role="MonAn" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiMon">
+        <PropertyRef Name="MaLoaiMon" />
+      </Principal>
+      <Dependent Role="MonAn">
+        <PropertyRef Name="Loai" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
